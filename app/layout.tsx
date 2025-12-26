@@ -1,5 +1,5 @@
-import "./globals.css";
-import Navbar from "@/components/Navbar";
+import DramaCard from "../components/DramaCard";
+import { getPopular } from "../lib/api";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

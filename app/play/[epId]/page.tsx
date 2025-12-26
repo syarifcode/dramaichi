@@ -1,13 +1,12 @@
-import { api } from "@/lib/api";
-import VideoPlayer from "@/components/VideoPlayer";
+import VideoPlayer from "../../../components/VideoPlayer";
+import { getEpisode } from "../../../lib/api";
 
-export default async function Play({ params, searchParams }: any) {
-  const eps = await api.episodes(searchParams.bookId);
-  const ep = eps.data.find((e: any) => e.id === params.epId);
+export default async function PlayPage({ params }: any) {
+  const episode = await getEpisode(params.epId);
 
   return (
-    <main className="pt-24 px-6">
-      <VideoPlayer episode={ep} />
+    <main style={{ padding: 20 }}>
+      <VideoPlayer src={episode.m3u8Url || episode.mp4} />
     </main>
   );
 }

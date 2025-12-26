@@ -1,11 +1,17 @@
-import { api } from "@/lib/api";
-import DramaCard from "@/components/DramaCard";
+import DramaCard from "../components/DramaCard";
+import { getPopular } from "../lib/api";
 
 export default async function Home() {
-  const data = await api.populer();
+  const data = await getPopular();
+
   return (
-    <main className="pt-24 px-6 grid grid-cols-5 gap-4">
-      {data.map((d: any) => <DramaCard key={d.bookId} d={d} />)}
+    <main style={{ padding: 20 }}>
+      <h1>Drama Populer</h1>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, 150px)", gap: 16 }}>
+        {data.map((item: any) => (
+          <DramaCard key={item.bookId} data={item} />
+        ))}
+      </div>
     </main>
   );
 }
